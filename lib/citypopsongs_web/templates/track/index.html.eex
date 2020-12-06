@@ -1,0 +1,48 @@
+<div class="flex flex-wrap md:flex-nowrap gap-x-6 gap-y-6">
+  <div class="w-full md:w-3/4 bg-white">
+    <%= render "_player.html", assigns %>
+  </div>
+  <div class="w-full md:w-1/4 shaded px-6 pt-6 pb-4 text-sm">
+    <div class="mb-4">
+      🍹 <span class="font-bold">City Pop</span> 🍹 is an amazing genre of upbeat, nostalgic music from the 80's in Japan.
+      <br/>
+      <br/>
+      This site was made for everyone to appreciate the beauty of these songs around the world
+    </div>
+    <a href="/about"><button>Why Citypop</button></a>
+  </div>
+</div>
+
+<%= form_for @conn, Routes.track_path(@conn, :index),
+    [method: :get], fn f -> %>
+  <div class="flex py-8 gap-x-6">
+    <div class="w-3/4">
+        <%= search_input f, :query,
+          [placeholder: "Search...", class: "w-full h-16 px-3 focus:outline-none focus:shadow-outline text-xl px-8 shadow-sm"] %>
+    </div>
+    <div class="w-1/4">
+      <%= select f, :sort, [:title, :artist], [onchange: "this.form.submit();", class: "w-full h-16 px-3 focus:outline-none focus:shadow-outline text-xl px-8 shadow-sm"]%>
+    </div>
+  </div>
+<% end %>
+
+<div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
+  <%= for track <- @tracks do %>
+    <div class="col-span-1">
+      <div class="track-card bg-white">
+        <div
+          class="card-img"
+          style="background-image:url(https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/img/<%= track.slug %>.jpg)">
+        </div>
+        <div class="text-black text-base px-4 pb-3">
+          <div class="mt-4 mb-1 card-title capitalize">
+            <%= track.title %>
+          </div>
+          <div class="text-sm pb-3 capitalize">
+            <%= track.artist %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

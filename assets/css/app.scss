@@ -1,6 +1,95 @@
 /* This file is for your main application css. */
-@import "./phoenix.css";
 @import "../node_modules/nprogress/nprogress.css";
+@import "./tailwind.css";
+
+html {
+  min-height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #fce043;
+  background: linear-gradient(315deg, #fce043 0%, #fb7ba2 74%);
+  height: auto;
+  width: 100%;
+}
+
+.brand {
+  font-family: 'Pacifico', cursive;
+}
+
+.player-img {
+  height: auto;
+  background-position: center;
+  background-size: cover;
+}
+
+.track-img {
+  height: 55px;
+  width: 55px;
+  background-position: center;
+  background-size: cover;
+}
+
+.skeleton-card {
+  border-width: 4px;
+}
+
+.track-card {
+  border-width: 4px;
+  cursor: pointer;
+  -webkit-transition : border-color 300ms ease-out;
+  -moz-transition : border-color 300ms ease-out;
+  -o-transition : border-color 300ms ease-out;
+  transition : border-color 300ms ease-out;
+  border-color: transparent;
+  &:hover {
+    border-width: 4px;
+    border-color: #ff9e43;
+    .card-title {
+      color: #ff9e43;
+    }
+  }
+}
+
+.card-title {
+  height: 40px;
+  -webkit-transition : color 300ms ease-out;
+  -moz-transition : color 300ms ease-out;
+  -o-transition : color 300ms ease-out;
+  transition : color 300ms ease-out;
+}
+
+.card-img {
+  height: 180px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.shaded {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.shaded-big {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 640px) {
+  .shaded {
+    height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .player-img {
+    height: 240px;
+  }
+  .search-bar {
+    width: 100%;
+  }
+}
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,

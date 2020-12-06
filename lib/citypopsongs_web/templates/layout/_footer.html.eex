@@ -1,0 +1,5 @@
+<div class="flex justify-center items-center gap-x-4 pb-20">
+  <a href="/privacy-policy">Privacy Policy</a>
+  |
+  <a href="/terms-of-use">Terms of Use</a>
+</div>
