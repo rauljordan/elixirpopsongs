@@ -19,6 +19,12 @@ defmodule Citypopsongs.Multimedia.Track do
     |> unique_constraint([:title])
   end
 
+  def random(query) do
+    from track in query,
+    order_by: fragment("RANDOM()"),
+    limit: 1
+  end
+
   def search(query, search_term) do
     wildcard_search = "%#{search_term}%"
     from track in query,

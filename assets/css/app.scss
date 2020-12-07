@@ -15,6 +15,43 @@ html {
   width: 100%;
 }
 
+.material-icons {
+  font-size: 26px !important;
+}
+
+#play-btn {
+  background-color: #ff4081;
+  border-radius: 50%;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  color: white;
+  box-sizing: border-box;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  line-height: 36px;
+  overflow: visible;
+  transform: translate3d(0, 0, 0);
+  transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1),box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 0;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  flex-shrink: 0;
+  i {
+    margin-top: 20%;
+  }
+}
+
 .brand {
   font-family: 'Pacifico', cursive;
 }

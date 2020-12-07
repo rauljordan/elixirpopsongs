@@ -42,6 +42,13 @@ defmodule Citypopsongs.Multimedia do
   """
   def get_track!(id), do: Repo.get!(Track, id)
 
+  def get_random_track do
+    Track
+    |> Track.random()
+    |> Repo.all
+    |> List.first
+  end
+
   @doc """
   Creates a track.
 
