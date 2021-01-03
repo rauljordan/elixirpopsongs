@@ -12,12 +12,14 @@ defmodule CitypopsongsWeb.NowPlayingChannel do
   @impl true
   def handle_in("ping", _payload, socket) do
     {track, starting_at, ending_at} = Multimedia.NowPlaying.get_track()
+    Multimedia.increase_listens(track)
     {:reply, {:ok,
       %{
         slug: track.slug,
         title: track.title,
         artist: track.artist,
         seconds: track.seconds,
+        listens: track.listens,
         starting_at: starting_at,
         ending_at: ending_at
       }

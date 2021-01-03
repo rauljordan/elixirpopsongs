@@ -42,6 +42,7 @@ let NowPlaying = {
         title,
         artist,
         seconds,
+        listens,
         starting_at,
         ending_at,
       }) => {
@@ -60,13 +61,29 @@ let NowPlaying = {
         this.audio.currentTime = elapsed;
         this.audio.muted = false;
         this.audio.play();
+
+        this.audio.ontimeupdate = function(event) {
+          const percent = (this.currentTime / this.duration) * 100;
+          document.getElementById("player-progress").style.width = `${percent}%`;
+          document.getElementById("player-elapsed").textContent = fmtMSS(Math.floor(this.currentTime));
+          document.getElementById("player-total").textContent = fmtMSS(Math.floor(this.duration));
+        };
+
         document.getElementById("play-btn-icon").textContent = "volume_off";
         document.getElementById("player-title").textContent = title;
         document.getElementById("player-artist").textContent = artist;
+        document.getElementById("player-total-listens").textContent = `${listens} total listens`
         document.getElementById("player-img").style.backgroundImage = `url(https://citypopsongs.nyc3.digitaloceanspaces.com/img/${slug}.jpg)`
         this.playing = true;
       });
+  },
+  fmtMSS(s) {
+    return(s-(s%=60))/60+(9<s?':':':0')+s;
   }
 };
+
+function fmtMSS(s) {
+  return(s-(s%=60))/60+(9<s?':':':0')+s;
+}
 
 export default NowPlaying;

@@ -85,6 +85,12 @@ defmodule Citypopsongs.Multimedia do
     |> Repo.update()
   end
 
+  def increase_listens(%Track{} = track) do
+    Track
+    |> where(id: ^track.id)
+    |> Repo.update_all(inc: [listens: 1])
+  end
+
   @doc """
   Deletes a track.
 

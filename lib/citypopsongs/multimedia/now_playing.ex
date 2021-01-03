@@ -10,7 +10,7 @@ defmodule Citypopsongs.Multimedia.NowPlaying do
     first_track = Multimedia.get_random_track()
     starting_at = System.system_time(:second)
     ending_at = starting_at + first_track.seconds
-    GenServer.start_link(@name, {first_track, starting_at, ending_at}, name: @name)
+    GenServer.start_link(@name, {first_track.id, first_track.seconds, starting_at, ending_at}, name: @name)
   end
 
   def get_track() do
@@ -20,15 +20,17 @@ defmodule Citypopsongs.Multimedia.NowPlaying do
   # Server methods
   @impl true
   def init(state) do
-    {track, _, _} = state
-    await_track_completion(track.seconds)
-    Logger.info "Initializing live radio with track #{track.title}"
+    {track_id, seconds, _, _} = state
+    await_track_completion(seconds)
+    Logger.info "Initializing live radio with track id #{track_id}"
     {:ok, state}
   end
 
   @impl true
   def handle_call(:now_playing, _, state) do
-    {:reply, state, state}
+    {track_id, _, starting_at, ending_at} = state
+    track = Multimedia.get_track!(track_id)
+    {:reply, {track, starting_at, ending_at}, state}
   end
 
   @impl true
@@ -38,7 +40,7 @@ defmodule Citypopsongs.Multimedia.NowPlaying do
     starting_at = System.system_time(:second)
     ending_at = starting_at + next_track.seconds
     await_track_completion(next_track.seconds)
-    {:noreply, {next_track, starting_at, ending_at}}
+    {:noreply, {next_track.id, next_track.seconds, starting_at, ending_at}}
   end
 
   defp await_track_completion(track_length) do
