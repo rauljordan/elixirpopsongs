@@ -1,10 +1,22 @@
-<div class="flex flex-wrap bg-gray-800">
-  <div id="chat-box">
+<div>
+  <div class="bg-gray-800 text-white px-6 pb-3 pt-4 text-xl">
+    Live chat
   </div>
-
-  <form id="chat-form">
-    <input type="text" placeholder="Username" id="chat-user-name"/>
-    <textarea placeholder="Your comment" id="chat-user-msg"></textarea>
-    <button type="submit">Post</button>
-  </form>
+  <div id="chat-box" class="bg-gray-900 px-6 py-4">
+    <%= for message <- @messages do %>
+      <p class="message text-gray-200">
+        <b class="text-red-400"><%= message.name %>:</b> <%= message.body %>
+      </p>
+    <% end %>
+  </div>
+  <div class="submission-box bg-gray-800 px-6 py-4">
+    <form id="chat-form" class="flex items-center">
+      <div class="w-4/5 mr-6">
+        <input placeholder="Add comment..." id="chat-user-msg" class="text-white outline-none w-full px-4 py-2 bg-gray-900 rounded-full"/>
+      </div>
+      <button id="chat-submit" type="submit" class="w-1/5">
+        <i class="material-icons">send</i>
+      </button>
+    </form>
+  </div>
 </div>

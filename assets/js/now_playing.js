@@ -15,6 +15,11 @@ const nowPlaying = {
     document.getElementById("listen-btn").addEventListener("click", _ => {
       document.getElementById("entry-overlay").style.display = "none";
       document.getElementById("radio").style.display = "flex";
+      let chatBox = document.querySelector("#chat-box");
+      chatBox.scroll({
+        top: chatBox.scrollHeight,
+        behavior: "smooth"
+      });
       this.playTrack(channel);
     });
   },
@@ -57,7 +62,7 @@ const nowPlaying = {
           this.playTrack(channel);
         }, playNextSong * 1000);
 
-        this.audio.src = `https://citypopsongs.nyc3.digitaloceanspaces.com/mp3/${slug}.mp3`;
+        this.audio.src = `https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/mp3/${slug}.mp3`;
         this.audio.currentTime = elapsed;
         this.audio.muted = false;
         this.audio.play();
@@ -73,7 +78,7 @@ const nowPlaying = {
         document.getElementById("player-title").textContent = title;
         document.getElementById("player-artist").textContent = artist;
         document.getElementById("player-total-listens").textContent = `${listens} total listens`
-        document.getElementById("player-img").style.backgroundImage = `url(https://citypopsongs.nyc3.digitaloceanspaces.com/img/${slug}.jpg)`
+        document.getElementById("player-img").style.backgroundImage = `url(https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/img/${slug}.jpg)`
         this.playing = true;
       });
   },
@@ -84,6 +89,10 @@ const nowPlaying = {
 
 function fmtMSS(s) {
   return(s-(s%=60))/60+(9<s?':':':0')+s;
+}
+
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export default nowPlaying;

@@ -1,5 +1,5 @@
 <div class="flex flex-wrap bg-gray-800">
-  <div id="player-img" class="w-full player-img" style="background-image: url(https://citypopsongs.nyc3.digitaloceanspaces.com/img/plastic-love.jpg)">
+  <div id="player-img" class="w-full player-img" style="background-image: url(https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/img/plastic-love.jpg)">
   </div>
   <div class="w-full pt-8">
     <div class="px-8 mb-4">

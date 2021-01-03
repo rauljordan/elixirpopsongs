@@ -1,3 +1,5 @@
-<div style="position: absolute;bottom:50px;width:100%;" class="text-white text-center flex justify-center items-center object-bottom font-medium">
+<div style="position: absolute;bottom:50px;width:100%;" class="text-white text-center font-medium md:block hidden">
   <a href="/privacy-policy">Privacy Policy</a>
+  <br/>
+  <p>all songs belong to their respective artists, we hold no copyright over <br/>any media in this site</p>
 </div>

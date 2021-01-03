@@ -9,6 +9,7 @@ defmodule Citypopsongs.Application do
     children = [
       # Start the Ecto repository
       Citypopsongs.Repo,
+      Citypopsongs.Chats.LiveChat,
       Citypopsongs.Multimedia.NowPlaying,
       # Start the Telemetry supervisor
       CitypopsongsWeb.Telemetry,
