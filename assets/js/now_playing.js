@@ -65,7 +65,6 @@ const nowPlaying = {
         this.audio.src = `https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/mp3/${slug}.mp3`;
         this.audio.currentTime = elapsed;
         this.audio.muted = false;
-        this.audio.play();
 
         this.audio.ontimeupdate = function(event) {
           const percent = (this.currentTime / this.duration) * 100;
@@ -74,12 +73,15 @@ const nowPlaying = {
           document.getElementById("player-total").textContent = fmtMSS(Math.floor(this.duration));
         };
 
-        document.getElementById("play-btn-icon").textContent = "volume_off";
-        document.getElementById("player-title").textContent = title;
-        document.getElementById("player-artist").textContent = artist;
-        document.getElementById("player-total-listens").textContent = `${listens} total listens`
-        document.getElementById("player-img").style.backgroundImage = `url(https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/img/${slug}.jpg)`
-        this.playing = true;
+        this.audio.onloadeddata = function(event) {
+          document.getElementById("play-btn-icon").textContent = "volume_off";
+          document.getElementById("player-title").textContent = title;
+          document.getElementById("player-artist").textContent = artist;
+          document.getElementById("player-total-listens").textContent = `${listens} total listens`
+          document.getElementById("player-img").style.backgroundImage = `url(https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/img/${slug}.jpg)`
+          this.audio.play();
+          this.playing = true;
+        };
       });
   },
   fmtMSS(s) {

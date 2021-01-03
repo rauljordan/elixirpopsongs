@@ -12,6 +12,7 @@ const liveChat = {
     this.listenForChats(channel);
   },
   listenForChats(channel) {
+    let chatBox = document.getElementById("chat-box");
     document.getElementById("chat-user-msg").addEventListener("focus", (e) => {
       chatBox.scroll({
         top: chatBox.scrollHeight,
