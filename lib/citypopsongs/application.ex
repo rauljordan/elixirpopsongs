@@ -9,12 +9,13 @@ defmodule Citypopsongs.Application do
     children = [
       # Start the Ecto repository
       Citypopsongs.Repo,
+      Citypopsongs.Multimedia.NowPlaying,
       # Start the Telemetry supervisor
       CitypopsongsWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Citypopsongs.PubSub},
       # Start the Endpoint (http/https)
-      CitypopsongsWeb.Endpoint
+      CitypopsongsWeb.Endpoint,
       # Start a worker by calling: Citypopsongs.Worker.start_link(arg)
       # {Citypopsongs.Worker, arg}
     ]

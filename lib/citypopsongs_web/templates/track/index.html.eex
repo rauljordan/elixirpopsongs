@@ -32,7 +32,7 @@
       <div class="track-card bg-white">
         <div
           class="card-img"
-          style="background-image:url(https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/img/<%= track.slug %>.jpg)">
+          style="background-image:url(https://citypopsongs.nyc3.digitaloceanspaces.com/img/<%= track.slug %>.jpg)">
         </div>
         <div class="text-black text-base px-4 pb-3">
           <div class="mt-4 mb-1 card-title capitalize">

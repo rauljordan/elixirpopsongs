@@ -17,6 +17,11 @@
     <%= @track.artist %>
   </li>
 
+  <li>
+    <strong>Seconds:</strong>
+    <%= @track.seconds %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.track_path(@conn, :edit, @track) %></span>

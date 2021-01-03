@@ -4,28 +4,16 @@ let NowPlaying = {
   init(socket) {
     let channel = socket.channel('now_playing:lobby', {});
     channel.join()
-      .receive("ok", resp => { console.log("Joined successfully", resp) })
+      .receive("ok", null)
       .receive("error", resp => { console.log("Unable to join", resp) })
   
     this.listenForTrack(channel);
   },
   listenForTrack(channel) {
+    this.audio.autoplay = true;
     document.getElementById('play-btn').addEventListener('click', _ => {
       if (this.audio.src === '') {
-        channel.push('ping', {play: true})
-          .receive('ok', ({
-            slug,
-            title,
-            artist,
-          }) => {
-            this.audio.src = `https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/mp3/${slug}.mp3`;
-            this.audio.play();
-            document.getElementById('play-btn-icon').textContent = 'pause';
-            document.getElementById('player-title').textContent = title;
-            document.getElementById('player-artist').textContent = artist;
-            document.getElementById('player-img').style.backgroundImage = `url(https://citypopsongs.nyc3.cdn.digitaloceanspaces.com/img/${slug}.jpg)`
-            this.playing = true;
-          });
+        this.playTrack(channel);
       } else {
         if (this.playing) {
           this.audio.pause();
@@ -38,6 +26,37 @@ let NowPlaying = {
         }
       }
     });
+  },
+  playTrack(channel) {
+    channel.push('ping', {play: true})
+      .receive('ok', ({
+        slug,
+        title,
+        artist,
+        seconds,
+        starting_at,
+        ending_at,
+      }) => {
+        this.audio.pause();
+
+        const timeNow = Math.floor(Date.now() / 1000);
+        const elapsed = timeNow - starting_at;
+        const playNextSong = ending_at - timeNow;
+
+        // Play the next song once it is time.
+        setTimeout(() => {
+          this.playTrack(channel);
+        }, playNextSong * 1000);
+
+        this.audio.src = `https://citypopsongs.nyc3.digitaloceanspaces.com/mp3/${slug}.mp3`;
+        this.audio.currentTime = elapsed;
+        this.audio.play();
+        document.getElementById('play-btn-icon').textContent = 'pause';
+        document.getElementById('player-title').textContent = title;
+        document.getElementById('player-artist').textContent = artist;
+        document.getElementById('player-img').style.backgroundImage = `url(https://citypopsongs.nyc3.digitaloceanspaces.com/img/${slug}.jpg)`
+        this.playing = true;
+      });
   }
 };
 

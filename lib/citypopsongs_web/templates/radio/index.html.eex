@@ -1,0 +1,6 @@
+<div class="flex flex-wrap md:flex-nowrap gap-x-6 gap-y-6">
+  <div class="w-full bg-white">
+    <%= render CitypopsongsWeb.TrackView, "_player.html", assigns %>
+  </div>
+  <div></div>
+</div>

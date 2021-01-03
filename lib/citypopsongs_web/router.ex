@@ -20,7 +20,7 @@ defmodule CitypopsongsWeb.Router do
   scope "/", CitypopsongsWeb do
     pipe_through :browser
 
-    get "/", TrackController, :index
+    get "/", RadioController, :index
     get "/about", LandingController, :about
     get "/privacy-policy", LandingController, :privacy_policy
     get "/terms-of-use", LandingController, :terms_of_use

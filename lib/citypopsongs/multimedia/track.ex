@@ -7,6 +7,7 @@ defmodule Citypopsongs.Multimedia.Track do
     field :artist, :string
     field :slug, :string
     field :title, :string
+    field :seconds, :integer
 
     timestamps()
   end
@@ -14,8 +15,8 @@ defmodule Citypopsongs.Multimedia.Track do
   @doc false
   def changeset(track, attrs) do
     track
-    |> cast(attrs, [:title, :slug, :artist])
-    |> validate_required([:title, :slug, :artist])
+    |> cast(attrs, [:title, :slug, :artist, :seconds])
+    |> validate_required([:title, :slug, :artist, :seconds])
     |> unique_constraint([:title])
   end
 

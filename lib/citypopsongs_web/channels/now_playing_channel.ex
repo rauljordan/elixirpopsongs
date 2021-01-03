@@ -11,8 +11,16 @@ defmodule CitypopsongsWeb.NowPlayingChannel do
   # by sending replies to requests from the client
   @impl true
   def handle_in("ping", _payload, socket) do
-    IO.puts "Got in"
-    random_track = Multimedia.get_random_track()
-    {:reply, {:ok, %{slug: random_track.slug, title: random_track.title, artist: random_track.artist}}, socket}
+    {track, starting_at, ending_at} = Multimedia.NowPlaying.get_track()
+    {:reply, {:ok,
+      %{
+        slug: track.slug,
+        title: track.title,
+        artist: track.artist,
+        seconds: track.seconds,
+        starting_at: starting_at,
+        ending_at: ending_at
+      }
+    }, socket}
   end
 end

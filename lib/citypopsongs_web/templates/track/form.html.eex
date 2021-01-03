@@ -17,6 +17,10 @@
   <%= text_input f, :artist %>
   <%= error_tag f, :artist %>
 
+  <%= label f, :seconds %>
+  <%= number_input f, :seconds %>
+  <%= error_tag f, :seconds %>
+
   <div>
     <%= submit "Save" %>
   </div>
