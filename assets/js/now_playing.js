@@ -53,6 +53,13 @@ const nowPlaying = {
       }) => {
         this.audio.muted = true;
 
+        document.getElementById("player-progress").style.width = `0%`;
+        document.getElementById("player-elapsed").textContent = '0:00'
+        document.getElementById("player-total").textContent = '-:--';
+        document.getElementById("player-title").textContent = 'Loading live track...';
+        document.getElementById("player-artist").textContent = 'Listen to the best city pop';
+        document.getElementById("player-total-listens").textContent = `-- total listens`
+
         const timeNow = Math.floor(Date.now() / 1000);
         const elapsed = timeNow - starting_at;
         const playNextSong = ending_at - timeNow;
