@@ -4,6 +4,7 @@ defmodule CitypopsongsWeb.UserSocket do
   ## Channels
   # channel "room:*", CitypopsongsWeb.RoomChannel
   channel "now_playing:*", CitypopsongsWeb.NowPlayingChannel
+  channel "live_chat:*", CitypopsongsWeb.LiveChatChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

@@ -1,4 +1,4 @@
-let NowPlaying = {
+const nowPlaying = {
   audio: new Audio(),
   playing: false,
   init(socket) {
@@ -86,4 +86,4 @@ function fmtMSS(s) {
   return(s-(s%=60))/60+(9<s?':':':0')+s;
 }
 
-export default NowPlaying;
+export default nowPlaying;

@@ -12,6 +12,8 @@ import "../css/app.scss"
 //     import {Socket} from "phoenix"
 import socket from "./socket"
 import nowPlaying from "./now_playing"
+import liveChat from "./live_chat"
 import "phoenix_html"
 
 nowPlaying.init(socket);
+liveChat.init(socket);
