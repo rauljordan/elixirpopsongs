@@ -7,7 +7,7 @@
         <div class="flex">
           <div class="mr-4 mt-1">
             <button type="button" id="play-btn">
-              <i class="material-icons" id="play-btn-icon">volume_up</i>
+              <i class="material-icons" id="play-btn-icon">volume_off</i>
             </button>
           </div>
           <div>

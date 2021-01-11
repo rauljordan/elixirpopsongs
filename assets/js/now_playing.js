@@ -30,11 +30,11 @@ const nowPlaying = {
       } else {
         if (this.playing) {
           this.audio.muted = true;
-          document.getElementById("play-btn-icon").textContent = "volume_up";
+          document.getElementById("play-btn-icon").textContent = "volume_off";
           this.playing = false;
         } else {
           this.audio.muted = false;
-          document.getElementById("play-btn-icon").textContent = "volume_off";
+          document.getElementById("play-btn-icon").textContent = "volume_up";
           this.playing = true;
         }
       }
@@ -48,9 +48,10 @@ const nowPlaying = {
         artist,
         seconds,
         listens,
-        starting_at,
-        ending_at,
+        start_at,
+        end_at,
       }) => {
+        console.log('received')
         this.audio.muted = true;
 
         document.getElementById("player-progress").style.width = `0%`;
@@ -61,8 +62,8 @@ const nowPlaying = {
         document.getElementById("player-total-listens").textContent = `-- total listens`
 
         const timeNow = Math.floor(Date.now() / 1000);
-        const elapsed = timeNow - starting_at;
-        const playNextSong = ending_at - timeNow;
+        const elapsed = timeNow - start_at;
+        const playNextSong = end_at - timeNow;
 
         // Play the next song once it is time.
         setTimeout(() => {
@@ -98,10 +99,6 @@ const nowPlaying = {
 
 function fmtMSS(s) {
   return(s-(s%=60))/60+(9<s?':':':0')+s;
-}
-
-function randomIntFromInterval(min, max) { // min and max included 
-  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export default nowPlaying;

@@ -49,6 +49,11 @@ defmodule Citypopsongs.Multimedia do
     |> List.first
   end
 
+  def count_tracks() do
+    Track
+    |> Repo.aggregate(:count, :id)
+  end
+
   @doc """
   Creates a track.
 
