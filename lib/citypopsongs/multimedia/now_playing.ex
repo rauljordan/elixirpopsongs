@@ -64,7 +64,7 @@ defmodule Citypopsongs.Multimedia.NowPlaying do
 
   defp initialize_state do
     track_ids =
-      1..Multimedia.count_tracks()+1
+      1..Multimedia.count_tracks()
       |> Enum.to_list
       |> Enum.shuffle
 
