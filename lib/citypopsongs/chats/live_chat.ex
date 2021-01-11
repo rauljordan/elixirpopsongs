@@ -2,7 +2,7 @@ defmodule Citypopsongs.Chats.LiveChat do
   use GenServer
 
   @name __MODULE__
-  @fetch_messages_length 25
+  @fetch_messages_length 50
 
   # Client methods
   def start_link(_) do
@@ -27,13 +27,15 @@ defmodule Citypopsongs.Chats.LiveChat do
   def handle_call(:recent_messages, _, state) do
     recent =
       state
-      |> Enum.take(@fetch_messages_length)
       |> Enum.reverse
     {:reply, recent, state}
   end
 
   @impl true
   def handle_call({:push_message, message}, _, state) do
-    {:reply, message, [message | state]}
+    tail =
+      state
+      |> Enum.take(@fetch_messages_length-1)
+    {:reply, message, [message | tail]}
   end
 end
